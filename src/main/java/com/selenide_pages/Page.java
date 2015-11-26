@@ -5,6 +5,4 @@ package com.selenide_pages;
  */
 public abstract class Page {
 
-
-
 }

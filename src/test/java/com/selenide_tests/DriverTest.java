@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.open;
 /**
  * Created by babych on 23.11.2015.
  */
-public class DriverTest {
+public class DriverTest extends BasicTest{
 
     @Test(priority = 1)
     public void OpenDrivereach(){

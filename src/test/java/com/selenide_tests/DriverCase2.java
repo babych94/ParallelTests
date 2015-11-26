@@ -2,7 +2,6 @@ package com.selenide_tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.google.gson.annotations.Until;
 import com.selenide_pages.DotApplications;
 import com.selenide_pages.DriverLogInPage;
 import com.selenide_pages.SettingsPage;
@@ -13,11 +12,12 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.sql.DriverManager.getDriver;
 
 /**
  * Created by babych on 24.11.2015.
  */
-public class DriverCase2 {
+public class DriverCase2 extends BasicTest{
 
 
 
@@ -30,7 +30,7 @@ public class DriverCase2 {
         settingsPage.settingsLable.shouldHave(Condition.text("Settings"));
         settingsPage.billingTabClick();
         settingsPage.cardOperations("Card name", "4242424242424242", "123", "4000000000000119");  //4000000000000119   4242424242424242
-        refresh();
+       // refresh();
         driverLogInPage = dotApplications.Logout();
         driverLogInPage.DriverloginLable.isDisplayed();
 

@@ -1,15 +1,14 @@
 package com.selenide_pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Condition.*;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.omg.PortableInterceptor.HOLDING;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.*;
+
 
 /**
  * Created by babych on 24.11.2015.
@@ -68,6 +67,8 @@ public class SettingsPage {
         $(By.xpath(".//*[@id='page-wrapper']/div[3]/div/div/div/ul/li[4]/a")).click();
     }
 
+
+
     public void cardOperations(String nameCard, String numberCard, String cvv, String changeCard){
 
         String nocardText = "You have no credit cards.";
@@ -123,7 +124,7 @@ public class SettingsPage {
            // removeButton.should(Condition.be(Condition.visible));
 
         } else if (errorText.isDisplayed()){
-            errorText.shouldHave(Condition.text("An error occurred while processing your card. Try again in a little bit."));
+//            errorText.shouldHave(Condition.text("An error occurred while processing your card. Try again in a little bit."));
             System.out.println("Test filed");
         }
     }
