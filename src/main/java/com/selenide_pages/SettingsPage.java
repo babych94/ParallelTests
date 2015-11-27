@@ -67,6 +67,9 @@ public class SettingsPage {
     @FindBy(id = "credit-cards-table")
     public SelenideElement creditTable;
 
+    @FindBy(how = How.XPATH, using = ".//*[@id='credit-cards-table']")
+    public SelenideElement tableCounts;
+
 
 
     public void billingTabClick(){
@@ -88,21 +91,8 @@ public class SettingsPage {
 
 
     public void cardOperations(String nameCard, String numberCard, String cvv, String changeCard){
-        if(noCardLable.has(text("You have no credit cards."))) {
-            addCardButton.click();
-            modalWindow.shouldHave(Condition.text("Checkout"));
-            nameCardField.setValue(nameCard);
-            numberCardField.setValue(numberCard);
-            yearButton.click();
-            inputYearfield.setValue("2017").pressEnter();
-            cvvField.setValue(cvv);
-            saveButton.click();
-            modalElementWindow.waitUntil(Condition.disappear, 10000);
-            System.out.println("New card was added successfully");
-       // removeButton.should(Condition.enabled).click();
-       // confirm("Are you sure you want to remove credit card 'Card name' ?");
-
-        } else if (removeButton.isDisplayed()){
+        Waiter();
+        if(removeButton.is(visible)) {
             addCardButton.click();
             modalWindow.shouldHave(Condition.text("Checkout"));
             nameCardField.setValue(nameCard);
@@ -114,6 +104,22 @@ public class SettingsPage {
 
             modalElementWindow.waitUntil(Condition.disappear, 10000);
             System.out.println("Card was changed");
+       // removeButton.should(Condition.enabled).click();
+       // confirm("Are you sure you want to remove credit card 'Card name' ?");
+
+        } else if(noCardLable.is(visible)){
+
+            addCardButton.click();
+            modalWindow.shouldHave(Condition.text("Checkout"));
+            nameCardField.setValue(nameCard);
+            numberCardField.setValue(numberCard);
+            yearButton.click();
+            inputYearfield.setValue("2017").pressEnter();
+            cvvField.setValue(cvv);
+            saveButton.click();
+            modalElementWindow.waitUntil(Condition.disappear, 10000);
+            System.out.println("New card was added successfully");
+
         }
 //        else if (errorText.isDisplayed()){
 ////            errorText.shouldHave(Condition.text("An error occurred while processing your card. Try again in a little bit."));
@@ -121,6 +127,9 @@ public class SettingsPage {
 //        }
     }
 
+    public void Waiter(){
+        addCardButton.waitUntil(appear, 3000);
+    }
 
 
 //    public void ifCardisORexistORbroken(){
