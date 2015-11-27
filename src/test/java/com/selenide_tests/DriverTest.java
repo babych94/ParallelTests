@@ -16,22 +16,21 @@ public class DriverTest extends BasicTest{
 
     @Test(priority = 1)
     public void OpenDrivereach(){
+
         DriverLogInPage driverLogInPage = open("https://staging.driverreachapp.com/users/login", DriverLogInPage.class);
-        driverLogInPage.DriverloginLable.shouldHave(Condition.text("User log in"));
-        DotApplications dotApplications = driverLogInPage.loginClick("yoshka151@gmail.com", "yoshka151@gmail.com");
+        driverLogInPage.isLoginLbl();
+        DotApplications dotApplications = driverLogInPage.loginClick("yoshka151@gmail.com", "yoshka151@gmail.com");      //Full table
+     //   DotApplications dotApplications = driverLogInPage.loginClick("test@auto.com", "test@auto.com");                //Empty table
+        dotApplications.isRowsPresent();
+        driverLogInPage.isLoginLbl();
+  /*
         VeiwPage veiwPage = dotApplications.OnViewClick();
         driverLogInPage = veiwPage.Logout();
-
-    }
-    @Test(priority = 2)
-    public void EmptyTable(){
-        DriverLogInPage driverLogInPage = open("https://staging.driverreachapp.com/users/login", DriverLogInPage.class);
-        driverLogInPage.DriverloginLable.shouldHave(Condition.text("User log in"));
-        DotApplications dotApplications = driverLogInPage.loginClick("test@auto.com", "test@auto.com");
+        dotApplications = driverLogInPage.loginClick("test@auto.com", "test@auto.com");
         dotApplications.emptyTable.shouldHave(Condition.text("No data available in table"));
         driverLogInPage = dotApplications.Logout();
         driverLogInPage.DriverloginLable.isDisplayed();
-
+*/
     }
 
 

@@ -25,6 +25,9 @@
         <module name="ParallelTests" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ParallelTests" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 

@@ -1,6 +1,7 @@
 package com.selenide_pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
@@ -63,18 +64,31 @@ public class SettingsPage {
     @FindBy(how = How.XPATH, using = ".//*[@id='credit-cards-table']/thead/tr/th[2]")
     public SelenideElement errorRowTable;
 
+    @FindBy(id = "credit-cards-table")
+    public SelenideElement creditTable;
+
+
+
     public void billingTabClick(){
         $(By.xpath(".//*[@id='page-wrapper']/div[3]/div/div/div/ul/li[4]/a")).click();
     }
 
+    public boolean errEnable(){
+        boolean error = false;
+       ElementsCollection tablrRows = creditTable.$$(By.xpath("thead/tr/th"));
+        for (SelenideElement element : tablrRows){
+            if (element.has(text("Errors"))){
+                error = true;
+                System.out.println("Card is broken");
+            }
+        }
+
+        return error;
+    }
 
 
     public void cardOperations(String nameCard, String numberCard, String cvv, String changeCard){
-
-        String nocardText = "You have no credit cards.";
-       SelenideElement notExist = noCardLable.shouldNot(Condition.exist);
-
-        if(noCardLable.isDisplayed()) {
+        if(noCardLable.has(text("You have no credit cards."))) {
             addCardButton.click();
             modalWindow.shouldHave(Condition.text("Checkout"));
             nameCardField.setValue(nameCard);
@@ -82,21 +96,11 @@ public class SettingsPage {
             yearButton.click();
             inputYearfield.setValue("2017").pressEnter();
             cvvField.setValue(cvv);
-
-
             saveButton.click();
             modalElementWindow.waitUntil(Condition.disappear, 10000);
-
-
+            System.out.println("New card was added successfully");
        // removeButton.should(Condition.enabled).click();
-
        // confirm("Are you sure you want to remove credit card 'Card name' ?");
-
-            if(errorRowTable.getText()=="Errors"){
-                System.out.println("Test filed");
-            }
-
-           // removeButton.should(Condition.be(Condition.visible));
 
         } else if (removeButton.isDisplayed()){
             addCardButton.click();
@@ -106,33 +110,28 @@ public class SettingsPage {
             yearButton.click();
             inputYearfield.setValue("2020").pressEnter();
             cvvField.setValue(cvv);
-
             saveButton.click();
-           // refresh();
+
             modalElementWindow.waitUntil(Condition.disappear, 10000);
-
-            errorRowTable.isDisplayed();
-
-       //     $(By.tagName("th")).getText()=="Errors";
-
-            if($(By.tagName("th")).getText()=="Errors"){
-                System.out.println("Test filed");
-            }
-         //   removeButton.should(Condition.be(Condition.visible));
-
-            //refresh();
-           // removeButton.should(Condition.be(Condition.visible));
-
-        } else if (errorText.isDisplayed()){
-//            errorText.shouldHave(Condition.text("An error occurred while processing your card. Try again in a little bit."));
-            System.out.println("Test filed");
+            System.out.println("Card was changed");
         }
+//        else if (errorText.isDisplayed()){
+////            errorText.shouldHave(Condition.text("An error occurred while processing your card. Try again in a little bit."));
+//            System.out.println("Card is Broken");
+//        }
     }
 
 
-    public DriverLogInPage Logout(){
 
-      //  accountButton.should(Condition.appear);
+//    public void ifCardisORexistORbroken(){
+//        if(errEnable()==true){
+//            Logout();
+//        }else {
+//            cardOperations("Card name", "4242424242424242", "123", "4000000000000119");
+//        }
+//    }
+
+    public DriverLogInPage Logout(){
         accountButton.click();
         logoutButton.click();
         return page(DriverLogInPage.class);

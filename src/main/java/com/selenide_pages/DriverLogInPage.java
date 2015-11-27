@@ -1,9 +1,11 @@
 package com.selenide_pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.page;
 
 /**
@@ -30,6 +32,9 @@ public class DriverLogInPage {
         return page(DotApplications.class);
     }
 
+    public void isLoginLbl(){
+        DriverloginLable.shouldHave(text("User log in"));
+    }
 
 
 }

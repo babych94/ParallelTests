@@ -17,7 +17,7 @@ public class DriverreachPage {
     public SelenideElement loginLink;
 
     public DriverLogInPage logInclick(){
-        $(By.cssSelector(".ibox-title>p>a")).click();
+        loginLink.click();
         return page(DriverLogInPage.class);
     }
 
