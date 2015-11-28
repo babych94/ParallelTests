@@ -23,14 +23,7 @@ public class DriverTest extends BasicTest{
      //   DotApplications dotApplications = driverLogInPage.loginClick("test@auto.com", "test@auto.com");                //Empty table
         dotApplications.isRowsPresent();
         driverLogInPage.isLoginLbl();
-  /*
-        VeiwPage veiwPage = dotApplications.OnViewClick();
-        driverLogInPage = veiwPage.Logout();
-        dotApplications = driverLogInPage.loginClick("test@auto.com", "test@auto.com");
-        dotApplications.emptyTable.shouldHave(Condition.text("No data available in table"));
-        driverLogInPage = dotApplications.Logout();
-        driverLogInPage.DriverloginLable.isDisplayed();
-*/
+
     }
 
 

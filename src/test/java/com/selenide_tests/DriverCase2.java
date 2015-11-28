@@ -29,7 +29,6 @@ public class DriverCase2 extends BasicTest{
         SettingsPage settingsPage = dotApplications.openSettings();
         settingsPage.settingsLable.shouldHave(Condition.text("Settings"));
         settingsPage.billingTabClick();
-      //  settingsPage.ifCardisORexistORbroken();
         settingsPage.cardOperations("Card name", "4242424242424242", "123", "4000000000000119");  //4000000000000119   4242424242424242
         settingsPage.errEnable();
        driverLogInPage = dotApplications.Logout();

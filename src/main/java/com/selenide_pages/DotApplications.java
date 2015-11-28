@@ -64,6 +64,8 @@ public class DotApplications {
 
             vievButton.click();
             textViewPage.shouldHave(text(nameLink));  //перевірка чи текст співпадає
+            System.out.println("Table has "+sizeOflist+" rows");
+            System.out.println("Name is: "+nameLink);
             return page(VeiwPage.class);
     }
 
@@ -81,6 +83,7 @@ public class DotApplications {
             Logout();
         }else {
             ClickViewApplication();
+            Logout();
         }
     }
 

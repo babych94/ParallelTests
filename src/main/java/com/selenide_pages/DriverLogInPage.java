@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.page;
 
@@ -33,6 +34,7 @@ public class DriverLogInPage {
     }
 
     public void isLoginLbl(){
+        DriverloginLable.waitUntil(appear, 3000);
         DriverloginLable.shouldHave(text("User log in"));
     }
 
