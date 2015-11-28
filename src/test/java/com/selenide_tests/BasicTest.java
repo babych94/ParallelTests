@@ -25,7 +25,7 @@ import static com.codeborne.selenide.Selenide.open;
  * Created by babych on 21.11.2015.
  */
 public class BasicTest {
-/*
+// /*
    public WebDriver driver;
 
     public DesiredCapabilities capabilities;
@@ -34,21 +34,22 @@ public class BasicTest {
 @Parameters({"browser"})
 public void Before(String browser) throws MalformedURLException {
 
+    String urlAddress = "http://10.0.11.44:4444/wd/hub";
 
     if(browser.equalsIgnoreCase("chrome")){
 
         System.out.println("Chrome browser");
         capabilities = DesiredCapabilities.chrome();
-        driver = new RemoteWebDriver(new URL("http://192.168.2.124:4444/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL(urlAddress), capabilities);
         driver.manage().window().maximize();
     }
 
     if(browser.equalsIgnoreCase("internet explorer")){
+
         System.out.println("internet explorer browser");
         capabilities = DesiredCapabilities.internetExplorer();
-        driver = new RemoteWebDriver(new URL("http://192.168.2.124:4444/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL(urlAddress), capabilities);
         driver.manage().window().maximize();
-
     }
     WebDriverRunner.setWebDriver(driver);
 
@@ -61,5 +62,5 @@ public void Before(String browser) throws MalformedURLException {
     WebDriverRunner.closeWebDriver();
     driver.quit();
 }
-*/
+//  */
 }

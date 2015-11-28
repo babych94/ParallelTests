@@ -117,7 +117,9 @@ public class SettingsPage {
         addCardButton.waitUntil(appear, 3000);
     }
 
-
+    public void isSettingsLBL(){
+        settingsLable.shouldHave(Condition.text("Settings"));
+    }
 
 
     public DriverLogInPage Logout(){

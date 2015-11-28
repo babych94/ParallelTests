@@ -21,13 +21,13 @@ public class DriverCase2 extends BasicTest{
 
 
 
-    @Test
+    @Test(priority = 2)
     public void Case2(){
         DriverLogInPage driverLogInPage = open("https://staging.driverreachapp.com/users/login", DriverLogInPage.class);
         driverLogInPage.isLoginLbl();
         DotApplications dotApplications = driverLogInPage.loginClick("yoshka151@gmail.com", "yoshka151@gmail.com");
         SettingsPage settingsPage = dotApplications.openSettings();
-        settingsPage.settingsLable.shouldHave(Condition.text("Settings"));
+        settingsPage.isSettingsLBL();
         settingsPage.billingTabClick();
         settingsPage.cardOperations("Card name", "4242424242424242", "123", "4000000000000119");  //4000000000000119   4242424242424242
         settingsPage.errEnable();
