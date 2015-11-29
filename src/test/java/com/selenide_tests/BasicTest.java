@@ -25,7 +25,7 @@ import static com.codeborne.selenide.Selenide.open;
  * Created by babych on 21.11.2015.
  */
 public class BasicTest {
-// /*
+ /*
    public WebDriver driver;
 
     public DesiredCapabilities capabilities;
@@ -62,5 +62,5 @@ public void Before(String browser) throws MalformedURLException {
     WebDriverRunner.closeWebDriver();
     driver.quit();
 }
-//  */
+  */
 }
