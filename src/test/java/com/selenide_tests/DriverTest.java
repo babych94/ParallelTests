@@ -24,8 +24,7 @@ public class DriverTest extends BasicTest{
 
         DriverLogInPage driverLogInPage = open(urla, DriverLogInPage.class);
         driverLogInPage.isLoginLbl();
-        DotApplications dotApplications = driverLogInPage.loginClick(Login, Pass);      //Full table
-     //   DotApplications dotApplications = driverLogInPage.loginClick("test@auto.com", "!123456");                //Empty table
+        DotApplications dotApplications = driverLogInPage.loginClick(Login, Pass);
         dotApplications.isRowsPresent();
         driverLogInPage.isLoginLbl();
 

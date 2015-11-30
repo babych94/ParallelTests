@@ -40,12 +40,12 @@ public class DotApplications {
     @FindBy(how = How.CSS, using ="#DataTables_Table_0_info")
             public SelenideElement firstEllofTable;
 
-    int sizeOflist;
+
     String nameLink;
 
     //визначаю кількість рядків  і  рандомно вибираю з них число
     public int randomNumber(){
-      sizeOflist =  sizeTable.size();
+        int  sizeOflist =  sizeTable.size();
         int randomLinkNumber = (int) (Math.random() * (sizeOflist -1));
         if(randomLinkNumber==0) {                      //перший елемент таблиці 1, а рандомом може випасти 0
             randomLinkNumber = 1;
@@ -62,8 +62,6 @@ public class DotApplications {
 
             vievButton.click();
             textViewPage.shouldHave(text(nameLink));  //перевірка чи текст співпадає
-          //  System.out.println("Table has "+sizeOflist+" rows");
-          //  System.out.println("Name is: "+nameLink);
             return page(VeiwPage.class);
     }
 
