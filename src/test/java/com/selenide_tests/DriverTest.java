@@ -5,6 +5,7 @@ import com.selenide_pages.DotApplications;
 import com.selenide_pages.DriverLogInPage;
 import com.selenide_pages.DriverreachPage;
 import com.selenide_pages.VeiwPage;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -14,14 +15,16 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class DriverTest extends BasicTest{
 
+    @Parameters({"Login", "Pass"})
+
     @Test(priority = 1)
-    public void OpenDrivereach(){
+    public void OpenDrivereach(String Login, String Pass){
 
         String urla = "https://staging.driverreachapp.com/users/login";
 
         DriverLogInPage driverLogInPage = open(urla, DriverLogInPage.class);
         driverLogInPage.isLoginLbl();
-        DotApplications dotApplications = driverLogInPage.loginClick("yoshka151@gmail.com", "!123456");      //Full table
+        DotApplications dotApplications = driverLogInPage.loginClick(Login, Pass);      //Full table
      //   DotApplications dotApplications = driverLogInPage.loginClick("test@auto.com", "!123456");                //Empty table
         dotApplications.isRowsPresent();
         driverLogInPage.isLoginLbl();

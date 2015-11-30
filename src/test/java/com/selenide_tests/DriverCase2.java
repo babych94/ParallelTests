@@ -8,6 +8,7 @@ import com.selenide_pages.SettingsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -19,13 +20,13 @@ import static java.sql.DriverManager.getDriver;
  */
 public class DriverCase2 extends BasicTest{
 
-
+@Parameters({"Login", "Pass"})
 
     @Test(priority = 2)
-    public void Case2(){
+    public void Case2(String Login, String Pass){
         DriverLogInPage driverLogInPage = open("https://staging.driverreachapp.com/users/login", DriverLogInPage.class);
         driverLogInPage.isLoginLbl();
-        DotApplications dotApplications = driverLogInPage.loginClick("yoshka151@gmail.com", "!123456");
+        DotApplications dotApplications = driverLogInPage.loginClick(Login, Pass);
         SettingsPage settingsPage = dotApplications.openSettings();
         settingsPage.isSettingsLBL();
         settingsPage.billingTabClick();

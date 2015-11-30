@@ -37,7 +37,7 @@ public class DotApplications {
     @FindBy(how = How.XPATH, using = ".//*[@id='page-wrapper']/div[1]/nav/div/div/ul/li[3]/a")
             public SelenideElement logoutButton;
 
-    @FindBy(how = How.XPATH, using =".//*[@id='DataTables_Table_0']/tbody/tr[1]/td[1]")
+    @FindBy(how = How.XPATH, using =".//*[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/span")
             public SelenideElement firstEllofTable;
 
     int sizeOflist;
@@ -70,19 +70,21 @@ public class DotApplications {
     }
 
     public boolean EmptyTBL(){
-        boolean empty = false;
-        if (firstEllofTable.has(text("No data available in table"))){
-            empty = true;
-            System.out.println("Table is empty");
+        boolean empty = true;
+        if (firstEllofTable.has(text("New"))){
+            empty = false;
+
         }
         return empty;
     }
 
     public void isRowsPresent(){
         if (EmptyTBL()==true){
+            System.out.println("Table is empty");
             Logout();
         }else {
             ClickViewApplication();
+            System.out.println("Table is full");
             Logout();
         }
     }

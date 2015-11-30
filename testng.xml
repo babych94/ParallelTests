@@ -5,6 +5,8 @@
 
     <test name="test Chrome" parallel="tests" thread-count="2">
         <parameter name="browser" value="chrome"  />
+        <parameter name="Login" value="yoshka151@gmail.com" />
+        <parameter name="Pass" value="!123456" />
 <classes>
     <class name="com.selenide_tests.DriverTest"/>
     <class name="com.selenide_tests.DriverCase2" />
@@ -13,6 +15,8 @@
 
     <test name="test IE" parallel="tests" thread-count="2">
         <parameter name="browser" value="internet explorer" />
+        <parameter name="Login" value="test@auto.com" />
+        <parameter name="Pass" value="!123456" />
 <classes>
     <class name="com.selenide_tests.DriverTest"/>
     <class name="com.selenide_tests.DriverCase2"/>
