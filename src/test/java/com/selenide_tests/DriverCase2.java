@@ -25,7 +25,7 @@ public class DriverCase2 extends BasicTest{
     public void Case2(){
         DriverLogInPage driverLogInPage = open("https://staging.driverreachapp.com/users/login", DriverLogInPage.class);
         driverLogInPage.isLoginLbl();
-        DotApplications dotApplications = driverLogInPage.loginClick("yoshka151@gmail.com", "yoshka151@gmail.com");
+        DotApplications dotApplications = driverLogInPage.loginClick("yoshka151@gmail.com", "!123456");
         SettingsPage settingsPage = dotApplications.openSettings();
         settingsPage.isSettingsLBL();
         settingsPage.billingTabClick();

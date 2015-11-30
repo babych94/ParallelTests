@@ -19,8 +19,8 @@ public class DriverTest extends BasicTest{
 
         DriverLogInPage driverLogInPage = open("https://staging.driverreachapp.com/users/login", DriverLogInPage.class);
         driverLogInPage.isLoginLbl();
-        DotApplications dotApplications = driverLogInPage.loginClick("yoshka151@gmail.com", "yoshka151@gmail.com");      //Full table
-     //   DotApplications dotApplications = driverLogInPage.loginClick("test@auto.com", "test@auto.com");                //Empty table
+        DotApplications dotApplications = driverLogInPage.loginClick("yoshka151@gmail.com", "!123456");      //Full table
+     //   DotApplications dotApplications = driverLogInPage.loginClick("test@auto.com", "!123456");                //Empty table
         dotApplications.isRowsPresent();
         driverLogInPage.isLoginLbl();
 
