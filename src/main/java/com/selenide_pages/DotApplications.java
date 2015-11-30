@@ -37,7 +37,7 @@ public class DotApplications {
     @FindBy(how = How.XPATH, using = ".//*[@id='page-wrapper']/div[1]/nav/div/div/ul/li[3]/a")
             public SelenideElement logoutButton;
 
-    @FindBy(how = How.XPATH, using =".//*[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/span")
+    @FindBy(how = How.CSS, using ="#DataTables_Table_0_info")
             public SelenideElement firstEllofTable;
 
     int sizeOflist;
@@ -56,35 +56,32 @@ public class DotApplications {
     public VeiwPage ClickViewApplication(){
         int vupadok = randomNumber();           //для того щоб функція не змінювала значення
 
-
-
             SelenideElement randButton = $(By.xpath(".//*[@id='DataTables_Table_0']/tbody/tr["+vupadok+"]")).find(By.cssSelector(".btn.btn-success.dropdown-toggle"));
             nameLink = $(By.xpath(".//*[@id='DataTables_Table_0']/tbody/tr["+ vupadok +"]/td[2]")).getText();
             randButton.click();
 
             vievButton.click();
             textViewPage.shouldHave(text(nameLink));  //перевірка чи текст співпадає
-            System.out.println("Table has "+sizeOflist+" rows");
-            System.out.println("Name is: "+nameLink);
+          //  System.out.println("Table has "+sizeOflist+" rows");
+          //  System.out.println("Name is: "+nameLink);
             return page(VeiwPage.class);
     }
 
     public boolean EmptyTBL(){
-        boolean empty = true;
-        if (firstEllofTable.has(text("New"))){
-            empty = false;
-
+        boolean empty = false;
+        if (firstEllofTable.has(text("Showing 0 to 0 of 0 entries"))){
+            empty = true;
         }
         return empty;
     }
 
     public void isRowsPresent(){
-        if (EmptyTBL()==true){
-            System.out.println("Table is empty");
-            Logout();
-        }else {
+        if (EmptyTBL()==false){
             ClickViewApplication();
             System.out.println("Table is full");
+            Logout();
+        }else if (EmptyTBL()==true){
+            System.out.println("Table is empty");
             Logout();
         }
     }

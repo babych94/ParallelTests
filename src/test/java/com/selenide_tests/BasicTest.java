@@ -44,9 +44,9 @@ public void Before(String browser) throws MalformedURLException {
         driver.manage().window().maximize();
     }
 
-    if(browser.equalsIgnoreCase("Internet explorer")){
+    if(browser.equalsIgnoreCase("internet explorer")){
 
-        System.out.println("internet explorer browser");
+        System.out.println("Internet explorer browser");
         capabilities = DesiredCapabilities.internetExplorer();
         driver = new RemoteWebDriver(new URL(urlAddress), capabilities);
         driver.manage().window().maximize();

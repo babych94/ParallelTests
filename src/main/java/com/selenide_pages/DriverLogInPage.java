@@ -34,7 +34,7 @@ public class DriverLogInPage {
     }
 
     public void isLoginLbl(){
-        DriverloginLable.waitUntil(appear, 3000);
+        DriverloginLable.waitUntil(appear, 10000);
         DriverloginLable.shouldHave(text("User log in"));
     }
 

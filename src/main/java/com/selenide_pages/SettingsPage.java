@@ -58,26 +58,29 @@ public class SettingsPage {
     @FindBy(how = How.XPATH, using = ".//*[@id='page-wrapper']/div[1]/nav/div/div/ul/li[3]/a")
     public SelenideElement logoutButton;
 
-    @FindBy(id = "credit-cards-table")
+    @FindBy(how = How.ID, using = "credit-cards-table")
     public SelenideElement creditTable;
+
+    @FindBy(how = How.XPATH, using = ".//*[@id='credit-cards-table']/thead/tr/th[2]")
+    public SelenideElement ErrRow;
 
     public void billingTabClick(){
         $(By.xpath(".//*[@id='page-wrapper']/div[3]/div/div/div/ul/li[4]/a")).click();
     }
 
     public boolean errEnable(){
-        boolean error = false;
-       ElementsCollection tablrRows = creditTable.$$(By.xpath("thead/tr/th"));
-        for (SelenideElement element : tablrRows){
-            if (element.has(text("Errors"))){
+        boolean error = false;                    //   "//*[@id="credit-cards-table"]/thead/tr/th[2]"
+            if (ErrRow.has(text("Errors"))) {
                 error = true;
                 System.out.println("Card is broken");
-            }
         }
 
         return error;
     }
 
+    public void Waiter(){
+        addCardButton.waitUntil(appear, 3000);
+    }
 
     public void cardOperations(String nameCard, String numberCard, String cvv, String changeCard){
         Waiter();
@@ -113,8 +116,13 @@ public class SettingsPage {
 
     }
 
-    public void Waiter(){
-        addCardButton.waitUntil(appear, 3000);
+    public void MakeCardOperations(){
+        if (errEnable()==true){
+            Logout();
+        } else if (errEnable()==false){
+            cardOperations("Card name", "4242424242424242", "123", "4000000000000119");
+            Logout();
+        }
     }
 
     public void isSettingsLBL(){

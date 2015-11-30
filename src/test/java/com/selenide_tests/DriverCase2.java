@@ -2,6 +2,7 @@ package com.selenide_tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.impl.Navigator;
 import com.selenide_pages.DotApplications;
 import com.selenide_pages.DriverLogInPage;
 import com.selenide_pages.SettingsPage;
@@ -30,10 +31,8 @@ public class DriverCase2 extends BasicTest{
         SettingsPage settingsPage = dotApplications.openSettings();
         settingsPage.isSettingsLBL();
         settingsPage.billingTabClick();
-        settingsPage.cardOperations("Card name", "4242424242424242", "123", "4000000000000119");  //4000000000000119   4242424242424242
-        settingsPage.errEnable();
-       driverLogInPage = dotApplications.Logout();
-       driverLogInPage.isLoginLbl();
+        settingsPage.MakeCardOperations();
+        driverLogInPage.isLoginLbl();
 
     }
 
