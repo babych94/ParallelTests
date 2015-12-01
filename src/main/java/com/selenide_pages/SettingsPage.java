@@ -1,14 +1,12 @@
 package com.selenide_pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.page;
 
 
 /**
@@ -19,7 +17,7 @@ public class SettingsPage {
     @FindBy(how = How.CSS, using = ".active>strong")
     public SelenideElement settingsLable;
 
-    @FindBy(how = How.CSS, using = ".panel-body>h3")
+    @FindBy(how = How.XPATH, using = ".//*[@id='page-wrapper']/div[3]/div/div/div/div/div/div/p")
     public SelenideElement noCardLable;
 
     @FindBy(how = How.CLASS_NAME, using = "modal-title")
@@ -64,8 +62,11 @@ public class SettingsPage {
     @FindBy(how = How.XPATH, using = ".//*[@id='credit-cards-table']/thead/tr/th[2]")
     public SelenideElement ErrRow;
 
+    @FindBy(how = How.XPATH, using = ".//*[@id='page-wrapper']/div[3]/div/div/div/ul/li[4]/a")
+    public SelenideElement billingButton;
+
     public void billingTabClick(){
-        $(By.xpath(".//*[@id='page-wrapper']/div[3]/div/div/div/ul/li[4]/a")).click();
+        billingButton.click();
     }
 
     public boolean errEnable(){
@@ -94,12 +95,12 @@ public class SettingsPage {
             cvvField.setValue(cvv);
             saveButton.click();
 
-            modalElementWindow.waitUntil(Condition.disappear, 10000);
+            modalElementWindow.waitUntil(disappear, 10000);
             System.out.println("Card was changed");
        // removeButton.should(Condition.enabled).click();
        // confirm("Are you sure you want to remove credit card 'Card name' ?");
 
-        } else if(noCardLable.is(visible)){
+        } else if(noCardLable.has(text("No credit card found."))){
 
             addCardButton.click();
             modalWindow.shouldHave(Condition.text("Checkout"));
@@ -109,7 +110,7 @@ public class SettingsPage {
             inputYearfield.setValue("2017").pressEnter();
             cvvField.setValue(cvv);
             saveButton.click();
-            modalElementWindow.waitUntil(Condition.disappear, 10000);
+            modalElementWindow.waitUntil(disappear, 10000);
             System.out.println("New card was added successfully");
 
         }
